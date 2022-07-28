@@ -32,3 +32,4 @@ func (*Person) Name() {
 ````
 Passing variables by pointer is considered best practices in Go. It helps save memory because pointers size is only one byte when a variable can have much more. Some types of variables are pointer based like arrays, slices and maps so no * is needed.
 
+

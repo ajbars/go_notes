@@ -15,7 +15,7 @@ oh my zsh has very useful kubectl abbreviations. It has to be install on top of 
 
 :::<CI file structure>
 ## How to write a CI yaml file
-Write a file called gitlab-ci.yml, it will be detected automatically and the jobs in it will be run
+Write a file called .gitlab-ci.yml, it will be detected automatically and the jobs in it will be run
 
 ### Structure of the file:
 
@@ -34,18 +34,23 @@ Write a file called gitlab-ci.yml, it will be detected automatically and the job
 `test the car:`  
 &nbsp;&nbsp;`stage: test`   
 &nbsp;&nbsp;`script:`  
-&nbsp;&nbsp;&nbsp;&nbsp;` - test -f build/car.txt`&nbsp;&nbsp;&nbsp;&nbsp;*// Tests whether there is a file with that name inside that folder*  
+&nbsp;&nbsp;&nbsp;&nbsp;`- test -f build/car.txt`&nbsp;&nbsp;&nbsp;&nbsp;*// Tests whether there is a file with that name inside that folder*  
 &nbsp;&nbsp;&nbsp;&nbsp;`- cd build`  
 &nbsp;&nbsp;&nbsp;&nbsp;`- grep "chassis" car.txt`  
   
   
-If all the commands in the script are successful (for example the grep command finds what we were searching for) , then the job is finished successfully
-
-
-
-
-
-
-
-
+If all the commands in the script are successful (for example the grep command finds what we were searching for) , then the job is finished successfully  
+Notice that .gitlab-ci.yml file should be in the root of the project and not in some other directory  
 :::
+
+:::<GitLab architecture>
+## GitLab architecture  
+<br>
+GitLab server - interface, allows creating repos and manage them, saves everything to db.  
+Also manages the pipeline but delegates it to GitLab runner.
+
+The runner is doing the "heavy lifting" and makes the actual steps. 
+
+You can add as many runners as needed, thus scaling the pipeline like during different time of day. 
+
+
